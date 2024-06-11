@@ -6,7 +6,7 @@ export const Nav = ({ state, send }) => {
   const goToInitial = () => {
     send({type: "CANCEL"})
   }
-
+  
   return (
     <nav className='Nav'>
       <h1 className='Nav-logo'>Book a fly ✈</h1>

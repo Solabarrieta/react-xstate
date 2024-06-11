@@ -4,7 +4,6 @@ import { type } from '@testing-library/user-event/dist/type';
 
 export const Welcome = ({ send }) => {
   const startBooking = () => {
-    console.log('start booking');
     send({type: 'START'})
   };
 
