@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './search.css';
-import { type } from '@testing-library/user-event/dist/type';
 
 export const Search = ({ send, context }) => {
   const [flight, setFlight] = useState('');
@@ -11,9 +10,9 @@ export const Search = ({ send, context }) => {
 
   const options = ['Mexico', 'Venezuela', 'Colombia'];
 
-  const goToPassengers = () => {
-    send({type: 'CONTINUE'})
-  }
+    const goToPassengers = () => {
+      send({type: 'CONTINUE', selectedCountry: flight})
+    }
   return (
     <div className='Search'>
       <p className='Search-title title'>Busca tu destino</p>
