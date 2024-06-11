@@ -1,5 +1,24 @@
 import { cleanup } from "@testing-library/react";
 import { assign, createMachine } from "xstate";
+
+const fillCountries = {
+  initial: "loading",
+  states: {
+    loading: {
+      on: {
+        DONE: "success",
+        ERROR: "failure"
+      }
+    },
+    success: {},
+    failure: {
+      on: {
+        RETRY: {target: 'loading'}
+      }
+    }
+  }
+}
+
 export const bookingMachine = createMachine(
   {
     id: "BookAFly",
@@ -29,6 +48,7 @@ export const bookingMachine = createMachine(
           },
           CANCEL: "initial"
         },
+        ...fillCountries
       },
       passengers: {
         on: {
