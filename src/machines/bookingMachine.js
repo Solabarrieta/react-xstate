@@ -1,8 +1,13 @@
-import { createMachine } from "xstate";
+import { cleanup } from "@testing-library/react";
+import { assign, createMachine } from "xstate";
 export const bookingMachine = createMachine(
   {
     id: "BookAFly",
     initial: "initial",
+    context: {
+      passengers: [],
+      selectedCountry: ''
+    },
     states: {
       initial: {
         on: {
@@ -16,19 +21,36 @@ export const bookingMachine = createMachine(
         entry: "imprimirEntrada",
         exit: 'imprimirSalida',
         on: {
-          CONTINUE: "passengers",
+          CONTINUE: {
+            target: "passengers",
+            actions: assign({
+              selectedCountry: ({ event }) => event.selectedCountry
+            })
+          },
           CANCEL: "initial"
         },
       },
       passengers: {
         on: {
           DONE: "tickets",
-          CANCEL: "initial"
+          CANCEL: {
+            target: "initial",
+            actions: "cleanContext"
+          },
+          ADD: {
+            target: 'passengers',
+            actions: assign(
+              ({context, event}) => context.passengers.push(event.newPassenger)
+            )
+          }
         },
       },
       tickets: {
         on: {
-          FINISH: "initial"
+          FINISH: {
+            target: "initial",
+            actions: "cleanContext"
+          }
         }
       },
     }
@@ -38,6 +60,10 @@ export const bookingMachine = createMachine(
       imprimirInicio: () => console.log('Imprimir inicio'),
       imprimirEntrada: () => console.log('Imprimir entrada search'),
       imprimirSalida: () => console.log('Imprimir salida search'),
+      cleanContext: assign({
+        selectedCountry: '',
+        passengers: []
+      })
     }
   }
 );
