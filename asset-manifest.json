@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Solabarrieta/react-xstate/static/css/main.477ee7d2.css",
+    "main.js": "/Solabarrieta/react-xstate/static/js/main.cbbe1646.js",
+    "static/js/453.b203c602.chunk.js": "/Solabarrieta/react-xstate/static/js/453.b203c602.chunk.js",
+    "static/media/background-travel-2.jpg": "/Solabarrieta/react-xstate/static/media/background-travel-2.1b3bc05ab3ab53a29ab2.jpg",
+    "index.html": "/Solabarrieta/react-xstate/index.html",
+    "main.477ee7d2.css.map": "/Solabarrieta/react-xstate/static/css/main.477ee7d2.css.map",
+    "main.cbbe1646.js.map": "/Solabarrieta/react-xstate/static/js/main.cbbe1646.js.map",
+    "453.b203c602.chunk.js.map": "/Solabarrieta/react-xstate/static/js/453.b203c602.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.477ee7d2.css",
+    "static/js/main.cbbe1646.js"
+  ]
+}
