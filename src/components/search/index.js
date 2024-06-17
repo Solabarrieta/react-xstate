@@ -7,8 +7,12 @@ export const Search = ({ send, context }) => {
   const handleSelectChange = (event) => {
     setFlight(event.target.value);
   };
-
-  const options = ['Mexico', 'Venezuela', 'Colombia'];
+  let options = []
+  if (context.countries) {
+    options = [...context.countries]
+  } else {
+    options = ['Mexico', 'Venezuela', 'Colombia'];
+  }
 
     const goToPassengers = () => {
       send({type: 'CONTINUE', selectedCountry: flight})
@@ -18,7 +22,7 @@ export const Search = ({ send, context }) => {
       <p className='Search-title title'>Busca tu destino</p>
       <select id="country" className='Search-select' value={flight} onChange={handleSelectChange}>
         <option value="" disabled defaultValue>Escoge un país</option>
-        {options.map((option) => <option value={option} key={option}>{option}</option>)}
+        {options.map((option) => <option value={option.name.common} key={option.name.common}>{option.name.common}</option>)}
       </select>
       <button
         disabled={flight === ''}
